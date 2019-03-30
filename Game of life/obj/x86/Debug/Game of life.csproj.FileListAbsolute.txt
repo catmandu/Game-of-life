@@ -6,3 +6,14 @@ c:\users\juan carlos\documents\visual studio 2010\Projects\Game of life\Game of 
 c:\users\juan carlos\documents\visual studio 2010\Projects\Game of life\Game of life\obj\x86\Debug\Game of life.pdb
 C:\Users\Juan Carlos\documents\visual studio 2010\Projects\Game of life\Game of life\obj\x86\Debug\Game of life.csprojResolveAssemblyReference.cache
 C:\Users\Juan Carlos\documents\visual studio 2010\Projects\Game of life\Game of life\obj\x86\Debug\Game_of_life.frmPrincipal.resources
+C:\Users\juanuri-c\Source\Repos\Game-of-life\Game of life\obj\x86\Debug\Game of life.csprojAssemblyReference.cache
+C:\Users\juanuri-c\Source\Repos\Game-of-life\Game of life\obj\x86\Debug\Game_of_life.Properties.Resources.resources
+C:\Users\juanuri-c\Source\Repos\Game-of-life\Game of life\obj\x86\Debug\Game of life.csproj.GenerateResource.cache
+C:\Users\juanuri-c\Source\Repos\Game-of-life\Game of life\obj\x86\Debug\Game of life.csproj.CoreCompileInputs.cache
+C:\Users\juanuri-c\Source\Repos\Game-of-life\Game of life\obj\x86\Debug\Game of life.exe
+C:\Users\juanuri-c\Source\Repos\Game-of-life\Game of life\obj\x86\Debug\Game of life.pdb
+C:\Users\juanuri-c\Source\Repos\Game-of-life\Game of life\bin\Debug\Game of life.exe
+C:\Users\juanuri-c\Source\Repos\Game-of-life\Game of life\bin\Debug\Game of life.pdb
+C:\Users\juanuri-c\Source\Repos\Game-of-life\Game of life\bin\Debug\Microsoft.VisualBasic.PowerPacks.Vs.dll
+C:\Users\juanuri-c\Source\Repos\Game-of-life\Game of life\obj\x86\Debug\Game of life.csproj.CopyComplete
+C:\Users\juanuri-c\Source\Repos\Game-of-life\Game of life\obj\x86\Debug\Game_of_life.MainForm.resources
