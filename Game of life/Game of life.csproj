@@ -57,7 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Box.cs">
+    <Compile Include="Cell.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="MainForm.cs">

@@ -38,6 +38,8 @@
             this.lblGenerations = new System.Windows.Forms.Label();
             this.lblSpeed = new System.Windows.Forms.Label();
             this.lblInstructions = new System.Windows.Forms.Label();
+            this.txtSize = new System.Windows.Forms.TextBox();
+            this.btnGenerate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.frame)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barSpeed)).BeginInit();
             this.SuspendLayout();
@@ -54,21 +56,21 @@
             // timer
             // 
             this.timer.Interval = 500;
-            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            this.timer.Tick += new System.EventHandler(this.Timer_Tick);
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(32, 57);
+            this.btnStart.Location = new System.Drawing.Point(26, 102);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
             this.btnStart.TabIndex = 1;
             this.btnStart.Text = "Comenzar";
             this.btnStart.UseVisualStyleBackColor = true;
-            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            this.btnStart.Click += new System.EventHandler(this.BtnStart_Click);
             // 
             // barSpeed
             // 
-            this.barSpeed.Location = new System.Drawing.Point(12, 165);
+            this.barSpeed.Location = new System.Drawing.Point(12, 194);
             this.barSpeed.Maximum = 1000;
             this.barSpeed.Minimum = 100;
             this.barSpeed.Name = "barSpeed";
@@ -76,17 +78,17 @@
             this.barSpeed.Size = new System.Drawing.Size(104, 45);
             this.barSpeed.TabIndex = 2;
             this.barSpeed.Value = 1000;
-            this.barSpeed.Scroll += new System.EventHandler(this.barSpeed_Scroll);
+            this.barSpeed.Scroll += new System.EventHandler(this.BarSpeed_Scroll);
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(32, 87);
+            this.btnRefresh.Location = new System.Drawing.Point(26, 131);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(75, 23);
             this.btnRefresh.TabIndex = 3;
-            this.btnRefresh.Text = "Borrar todo";
+            this.btnRefresh.Text = "Reset";
             this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            this.btnRefresh.Click += new System.EventHandler(this.BtnRefresh_Click);
             // 
             // lblGenerations
             // 
@@ -100,7 +102,7 @@
             // lblSpeed
             // 
             this.lblSpeed.AutoSize = true;
-            this.lblSpeed.Location = new System.Drawing.Point(29, 149);
+            this.lblSpeed.Location = new System.Drawing.Point(29, 169);
             this.lblSpeed.Name = "lblSpeed";
             this.lblSpeed.Size = new System.Drawing.Size(63, 13);
             this.lblSpeed.TabIndex = 5;
@@ -109,18 +111,39 @@
             // lblInstructions
             // 
             this.lblInstructions.AutoSize = true;
-            this.lblInstructions.Location = new System.Drawing.Point(1, 251);
+            this.lblInstructions.Location = new System.Drawing.Point(1, 253);
             this.lblInstructions.Name = "lblInstructions";
             this.lblInstructions.Size = new System.Drawing.Size(119, 39);
             this.lblInstructions.TabIndex = 6;
             this.lblInstructions.Text = "Haz click en las casillas\r\npara activarlas y/o \r\ndesactivarlas.";
             this.lblInstructions.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // txtSize
+            // 
+            this.txtSize.Location = new System.Drawing.Point(26, 46);
+            this.txtSize.Name = "txtSize";
+            this.txtSize.Size = new System.Drawing.Size(75, 20);
+            this.txtSize.TabIndex = 7;
+            this.txtSize.Text = "30";
+            this.txtSize.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtSize_KeyPress);
+            // 
+            // btnGenerate
+            // 
+            this.btnGenerate.Location = new System.Drawing.Point(26, 73);
+            this.btnGenerate.Name = "btnGenerate";
+            this.btnGenerate.Size = new System.Drawing.Size(75, 23);
+            this.btnGenerate.TabIndex = 8;
+            this.btnGenerate.Text = "Generar";
+            this.btnGenerate.UseVisualStyleBackColor = true;
+            this.btnGenerate.Click += new System.EventHandler(this.BtnGenerate_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(612, 499);
+            this.Controls.Add(this.btnGenerate);
+            this.Controls.Add(this.txtSize);
             this.Controls.Add(this.lblInstructions);
             this.Controls.Add(this.lblSpeed);
             this.Controls.Add(this.lblGenerations);
@@ -150,6 +173,8 @@
         private System.Windows.Forms.Label lblGenerations;
         private System.Windows.Forms.Label lblSpeed;
         private System.Windows.Forms.Label lblInstructions;
+        private System.Windows.Forms.TextBox txtSize;
+        private System.Windows.Forms.Button btnGenerate;
     }
 }
 

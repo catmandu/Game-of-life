@@ -7,50 +7,59 @@ namespace Game_of_life
 {
     public partial class MainForm : Form
     {
-        int boxesNumber;
         int generationCounter;
-        Box[,] boxMatrix;
+        int cellsNumber;
+        ShapeContainer container;
+        Cell[,] cellMatrix;
 
         public MainForm()
         {
             InitializeComponent();
-            boxesNumber = 30;
-            boxMatrix = new Box[boxesNumber, boxesNumber];
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            ShapeContainer container = new ShapeContainer();
-            container.Parent = frame;
-            int row, column, x, y, size;
-            row = column = x = y = 0;
-            size = frame.Width / boxesNumber;
+            GenerateMatrix();
+        }
 
-            while (y < size * boxesNumber)
+        private void TxtSize_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8)
             {
-                while (x < size * boxesNumber)
-                {
-                    boxMatrix[column, row] = new Box(container, x, y, size);
-                    x += size;
-                    column++;
-                }
-
-                x = 0;
-                row++;
-                column = 0;
-                y += size;
+                e.Handled = true;
             }
         }
 
-        private void btnStart_Click(object sender, EventArgs e)
+        private void BtnGenerate_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtSize.Text))
+            {
+                int matrixSize = Convert.ToInt16(txtSize.Text);
+
+                if (matrixSize > 4 && matrixSize <= 40)
+                {
+                    GenerateMatrix();
+                }
+                else
+                {
+                    MessageBox.Show("El tamaño de la matriz debe ser entre 5 y 40.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debes asignar un tamaño a la matriz antes de gerenarla.");
+            }
+
+        }
+
+        private void BtnStart_Click(object sender, EventArgs e)
         {
             if (timer.Enabled)
             {
                 timer.Enabled = false;
                 timer.Stop();
-                btnStart.Text = "Comenzar";
+                btnStart.Text = generationCounter > 0 ? "Continuar" : "Comenzar";
             }
-
             else
             {
                 timer.Enabled = true;
@@ -59,19 +68,19 @@ namespace Game_of_life
             }
         }
 
-        private void barSpeed_Scroll(object sender, EventArgs e)
+        private void BarSpeed_Scroll(object sender, EventArgs e)
         {
             timer.Interval = (sender as TrackBar).Value;
         }
 
-        private void btnRefresh_Click(object sender, EventArgs e)
+        private void BtnRefresh_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < boxesNumber; i++)
+            for (int i = 0; i < cellsNumber; i++)
             {
-                for (int j = 0; j < boxesNumber; j++)
+                for (int j = 0; j < cellsNumber; j++)
                 {
-                    boxMatrix[j, i].isAlive = false;
-                    boxMatrix[j, i].BackColor = Color.White;
+                    cellMatrix[j, i].isAlive = false;
+                    cellMatrix[j, i].BackColor = Color.White;
                 }
             }
             
@@ -82,30 +91,77 @@ namespace Game_of_life
             lblGenerations.Text = $"Generacion: {generationCounter}";
         }
 
-        private void timer_Tick(object sender, EventArgs e)
+        private void Timer_Tick(object sender, EventArgs e)
         {
-            for (int i = 0; i < boxesNumber; i++)
+            for (int i = 0; i < cellsNumber; i++)
             { 
-                for (int j = 0; j < boxesNumber; j++)
+                for (int j = 0; j < cellsNumber; j++)
                 {
-                    Box.countAliveNeighbours(i, j, boxesNumber, boxMatrix); 
+                    Cell.CountAliveNeighbours(i, j, cellsNumber, cellMatrix); 
                 } 
             }
 
-            if (Box.isGameOver(boxesNumber, boxMatrix))
+            if (IsGameOver())
             {
                 timer.Enabled = false;
                 timer.Stop();
                 btnStart.Text = "Comenzar";
-                MessageBox.Show($"Juego terminado, numero de generaciones: {generationCounter}");
+                MessageBox.Show($"Juego terminado, número de generaciones: {generationCounter}");
                 generationCounter = 0;
             }
             else
             {
-                Box.nextGeneration(boxesNumber, boxMatrix);
+                Cell.NextGeneration(cellsNumber, cellMatrix);
                 generationCounter++;
             }
             lblGenerations.Text = $"Generacion: {generationCounter}";
+        }
+
+        private void GenerateMatrix()
+        {
+            if (container != null)
+            {
+                container.Dispose();
+            }
+            container = new ShapeContainer();
+
+            int row, column, x, y, cellSize;
+
+            container.Parent = frame;
+            cellsNumber = Convert.ToInt16(txtSize.Text);
+            cellMatrix = new Cell[cellsNumber, cellsNumber];
+            row = column = x = y = 0;
+            cellSize = frame.Width / cellsNumber;
+
+            while (y < cellSize * cellsNumber)
+            {
+                while (x < cellSize * cellsNumber)
+                {
+                    cellMatrix[column, row] = new Cell(container, x, y, cellSize);
+                    x += cellSize;
+                    column++;
+                }
+
+                x = 0;
+                row++;
+                column = 0;
+                y += cellSize;
+            }
+        }
+
+        public bool IsGameOver()
+        {
+            for (int i = 0; i < cellsNumber; i++)
+            {
+                for (int j = 0; j < cellsNumber; j++)
+                {
+                    if (cellMatrix[j, i].isAlive)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
     }
 }
