@@ -51,6 +51,7 @@ namespace Game_of_life
             this.picBorder = new System.Windows.Forms.PictureBox();
             this.picBackground = new System.Windows.Forms.PictureBox();
             this.picFill = new System.Windows.Forms.PictureBox();
+            this.lblTickSpeed = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.frame)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBorder)).BeginInit();
@@ -84,13 +85,16 @@ namespace Game_of_life
             // 
             // barSpeed
             // 
+            this.barSpeed.LargeChange = 100;
             this.barSpeed.Location = new System.Drawing.Point(12, 194);
             this.barSpeed.Maximum = 1000;
             this.barSpeed.Minimum = 100;
             this.barSpeed.Name = "barSpeed";
             this.barSpeed.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.barSpeed.Size = new System.Drawing.Size(104, 45);
+            this.barSpeed.SmallChange = 100;
             this.barSpeed.TabIndex = 2;
+            this.barSpeed.TickFrequency = 100;
             this.barSpeed.Value = 500;
             this.barSpeed.Scroll += new System.EventHandler(this.BarSpeed_Scroll);
             // 
@@ -125,11 +129,12 @@ namespace Game_of_life
             // lblInstructions
             // 
             this.lblInstructions.AutoSize = true;
-            this.lblInstructions.Location = new System.Drawing.Point(1, 253);
+            this.lblInstructions.Location = new System.Drawing.Point(-2, 275);
             this.lblInstructions.Name = "lblInstructions";
-            this.lblInstructions.Size = new System.Drawing.Size(119, 39);
+            this.lblInstructions.Size = new System.Drawing.Size(118, 52);
             this.lblInstructions.TabIndex = 6;
-            this.lblInstructions.Text = "Haz click en las casillas\r\npara activarlas y/o \r\ndesactivarlas.";
+            this.lblInstructions.Text = "Haz click o arrastra el\rcursor sobre las casillas\rpara activarlas y/o \r\ndesactiva" +
+    "rlas.";
             this.lblInstructions.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtSize
@@ -158,7 +163,7 @@ namespace Game_of_life
             // 
             // btn_BorderColor
             // 
-            this.btn_BorderColor.Location = new System.Drawing.Point(4, 308);
+            this.btn_BorderColor.Location = new System.Drawing.Point(1, 355);
             this.btn_BorderColor.Name = "btn_BorderColor";
             this.btn_BorderColor.Size = new System.Drawing.Size(89, 23);
             this.btn_BorderColor.TabIndex = 9;
@@ -168,7 +173,7 @@ namespace Game_of_life
             // 
             // btn_FillColor
             // 
-            this.btn_FillColor.Location = new System.Drawing.Point(4, 366);
+            this.btn_FillColor.Location = new System.Drawing.Point(1, 413);
             this.btn_FillColor.Name = "btn_FillColor";
             this.btn_FillColor.Size = new System.Drawing.Size(89, 23);
             this.btn_FillColor.TabIndex = 10;
@@ -178,7 +183,7 @@ namespace Game_of_life
             // 
             // btn_BackgroundColor
             // 
-            this.btn_BackgroundColor.Location = new System.Drawing.Point(4, 337);
+            this.btn_BackgroundColor.Location = new System.Drawing.Point(1, 384);
             this.btn_BackgroundColor.Name = "btn_BackgroundColor";
             this.btn_BackgroundColor.Size = new System.Drawing.Size(89, 23);
             this.btn_BackgroundColor.TabIndex = 11;
@@ -192,10 +197,10 @@ namespace Game_of_life
             // 
             // picBorder
             // 
-            this.picBorder.BackColor = clrBorders.Color;
+            this.picBorder.BackColor = this.clrBorders.Color;
             this.picBorder.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picBorder.Enabled = false;
-            this.picBorder.Location = new System.Drawing.Point(94, 308);
+            this.picBorder.Location = new System.Drawing.Point(91, 355);
             this.picBorder.Name = "picBorder";
             this.picBorder.Size = new System.Drawing.Size(22, 22);
             this.picBorder.TabIndex = 12;
@@ -203,10 +208,10 @@ namespace Game_of_life
             // 
             // picBackground
             // 
-            this.picBackground.BackColor = clrBackground.Color;
+            this.picBackground.BackColor = this.clrBackground.Color;
             this.picBackground.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picBackground.Enabled = false;
-            this.picBackground.Location = new System.Drawing.Point(94, 336);
+            this.picBackground.Location = new System.Drawing.Point(91, 383);
             this.picBackground.Name = "picBackground";
             this.picBackground.Size = new System.Drawing.Size(22, 22);
             this.picBackground.TabIndex = 13;
@@ -214,20 +219,31 @@ namespace Game_of_life
             // 
             // picFill
             // 
-            this.picFill.BackColor = clrFill.Color;
+            this.picFill.BackColor = this.clrFill.Color;
             this.picFill.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picFill.Enabled = false;
-            this.picFill.Location = new System.Drawing.Point(94, 367);
+            this.picFill.Location = new System.Drawing.Point(91, 414);
             this.picFill.Name = "picFill";
             this.picFill.Size = new System.Drawing.Size(22, 22);
             this.picFill.TabIndex = 14;
             this.picFill.TabStop = false;
+            // 
+            // lblTickSpeed
+            // 
+            this.lblTickSpeed.AutoSize = true;
+            this.lblTickSpeed.Location = new System.Drawing.Point(5, 226);
+            this.lblTickSpeed.Name = "lblTickSpeed";
+            this.lblTickSpeed.Size = new System.Drawing.Size(0, 13);
+            this.lblTickSpeed.TabIndex = 15;
+            this.lblTickSpeed.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTickSpeed.Text = string.Format("ciclos por segundo:\r{0}",1000/timer.Interval);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(612, 499);
+            this.Controls.Add(this.lblTickSpeed);
             this.Controls.Add(this.picFill);
             this.Controls.Add(this.picBackground);
             this.Controls.Add(this.picBorder);
@@ -279,6 +295,7 @@ namespace Game_of_life
         private System.Windows.Forms.PictureBox picBorder;
         private System.Windows.Forms.PictureBox picBackground;
         private System.Windows.Forms.PictureBox picFill;
+        private System.Windows.Forms.Label lblTickSpeed;
     }
 }
 

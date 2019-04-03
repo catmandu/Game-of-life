@@ -70,6 +70,9 @@ namespace Game_of_life
         private void BarSpeed_Scroll(object sender, EventArgs e)
         {
             timer.Interval = (sender as TrackBar).Value;
+            float interval = timer.Interval;
+            float cycles = 1000 / interval;
+            lblTickSpeed.Text = $"ciclos por segundo:\r{cycles}";
         }
 
         private void BtnRefresh_Click(object sender, EventArgs e)
