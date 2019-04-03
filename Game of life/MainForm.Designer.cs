@@ -1,4 +1,6 @@
-﻿namespace Game_of_life
+﻿using Microsoft.VisualBasic.PowerPacks;
+
+namespace Game_of_life
 {
     partial class MainForm
     {
@@ -46,8 +48,14 @@
             this.btn_BackgroundColor = new System.Windows.Forms.Button();
             this.clrBackground = new System.Windows.Forms.ColorDialog();
             this.clrFill = new System.Windows.Forms.ColorDialog();
+            this.picBorder = new System.Windows.Forms.PictureBox();
+            this.picBackground = new System.Windows.Forms.PictureBox();
+            this.picFill = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.frame)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barSpeed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBorder)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBackground)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFill)).BeginInit();
             this.SuspendLayout();
             // 
             // frame
@@ -83,7 +91,7 @@
             this.barSpeed.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.barSpeed.Size = new System.Drawing.Size(104, 45);
             this.barSpeed.TabIndex = 2;
-            this.barSpeed.Value = 1000;
+            this.barSpeed.Value = 500;
             this.barSpeed.Scroll += new System.EventHandler(this.BarSpeed_Scroll);
             // 
             // btnRefresh
@@ -150,7 +158,7 @@
             // 
             // btn_BorderColor
             // 
-            this.btn_BorderColor.Location = new System.Drawing.Point(12, 308);
+            this.btn_BorderColor.Location = new System.Drawing.Point(4, 308);
             this.btn_BorderColor.Name = "btn_BorderColor";
             this.btn_BorderColor.Size = new System.Drawing.Size(89, 23);
             this.btn_BorderColor.TabIndex = 9;
@@ -160,7 +168,7 @@
             // 
             // btn_FillColor
             // 
-            this.btn_FillColor.Location = new System.Drawing.Point(12, 366);
+            this.btn_FillColor.Location = new System.Drawing.Point(4, 366);
             this.btn_FillColor.Name = "btn_FillColor";
             this.btn_FillColor.Size = new System.Drawing.Size(89, 23);
             this.btn_FillColor.TabIndex = 10;
@@ -170,7 +178,7 @@
             // 
             // btn_BackgroundColor
             // 
-            this.btn_BackgroundColor.Location = new System.Drawing.Point(12, 337);
+            this.btn_BackgroundColor.Location = new System.Drawing.Point(4, 337);
             this.btn_BackgroundColor.Name = "btn_BackgroundColor";
             this.btn_BackgroundColor.Size = new System.Drawing.Size(89, 23);
             this.btn_BackgroundColor.TabIndex = 11;
@@ -182,11 +190,47 @@
             // 
             this.clrBackground.Color = System.Drawing.Color.White;
             // 
+            // picBorder
+            // 
+            this.picBorder.BackColor = clrBorders.Color;
+            this.picBorder.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picBorder.Enabled = false;
+            this.picBorder.Location = new System.Drawing.Point(94, 308);
+            this.picBorder.Name = "picBorder";
+            this.picBorder.Size = new System.Drawing.Size(22, 22);
+            this.picBorder.TabIndex = 12;
+            this.picBorder.TabStop = false;
+            // 
+            // picBackground
+            // 
+            this.picBackground.BackColor = clrBackground.Color;
+            this.picBackground.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picBackground.Enabled = false;
+            this.picBackground.Location = new System.Drawing.Point(94, 336);
+            this.picBackground.Name = "picBackground";
+            this.picBackground.Size = new System.Drawing.Size(22, 22);
+            this.picBackground.TabIndex = 13;
+            this.picBackground.TabStop = false;
+            // 
+            // picFill
+            // 
+            this.picFill.BackColor = clrFill.Color;
+            this.picFill.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picFill.Enabled = false;
+            this.picFill.Location = new System.Drawing.Point(94, 367);
+            this.picFill.Name = "picFill";
+            this.picFill.Size = new System.Drawing.Size(22, 22);
+            this.picFill.TabIndex = 14;
+            this.picFill.TabStop = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(612, 499);
+            this.Controls.Add(this.picFill);
+            this.Controls.Add(this.picBackground);
+            this.Controls.Add(this.picBorder);
             this.Controls.Add(this.btn_BackgroundColor);
             this.Controls.Add(this.btn_FillColor);
             this.Controls.Add(this.btn_BorderColor);
@@ -206,6 +250,9 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.frame)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barSpeed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBorder)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBackground)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFill)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -229,6 +276,9 @@
         private System.Windows.Forms.Button btn_BackgroundColor;
         private System.Windows.Forms.ColorDialog clrBackground;
         private System.Windows.Forms.ColorDialog clrFill;
+        private System.Windows.Forms.PictureBox picBorder;
+        private System.Windows.Forms.PictureBox picBackground;
+        private System.Windows.Forms.PictureBox picFill;
     }
 }
 

@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.PowerPacks;
-using Game_of_life;
 
 namespace Game_of_life
 {

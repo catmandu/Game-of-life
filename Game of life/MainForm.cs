@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.PowerPacks;
 
@@ -117,6 +116,27 @@ namespace Game_of_life
             lblGenerations.Text = $"Generacion: {generationCounter}";
         }
 
+        private void BtnBorderColor_Click(object sender, EventArgs e)
+        {
+            clrBorders.ShowDialog();
+            ReplaceMatrix();
+            picBorder.BackColor = clrBorders.Color;
+        }
+
+        private void Btn_BackgroundColor_Click(object sender, EventArgs e)
+        {
+            clrBackground.ShowDialog();
+            ReplaceMatrix();
+            picBackground.BackColor = clrBackground.Color;
+        }
+
+        private void Btn_FillColor_Click(object sender, EventArgs e)
+        {
+            clrFill.ShowDialog();
+            ReplaceMatrix();
+            picFill.BackColor = clrFill.Color;
+        }
+
         private void GenerateMatrix()
         {
             if (container != null)
@@ -178,24 +198,6 @@ namespace Game_of_life
                 }
             }
             return true;
-        }
-
-        private void BtnBorderColor_Click(object sender, EventArgs e)
-        {
-            clrBorders.ShowDialog();
-            ReplaceMatrix();
-        }
-
-        private void Btn_BackgroundColor_Click(object sender, EventArgs e)
-        {
-            clrBackground.ShowDialog();
-            ReplaceMatrix();
-        }
-
-        private void Btn_FillColor_Click(object sender, EventArgs e)
-        {
-            clrFill.ShowDialog();
-            ReplaceMatrix();
         }
     }
 }
