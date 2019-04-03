@@ -80,7 +80,7 @@ namespace Game_of_life
                 for (int j = 0; j < cellsNumber; j++)
                 {
                     cellMatrix[j, i].isAlive = false;
-                    cellMatrix[j, i].BackColor = Color.White;
+                    cellMatrix[j, i].BackColor = cellMatrix[j, i].backgroundColor;
                 }
             }
             
@@ -137,7 +137,7 @@ namespace Game_of_life
             {
                 while (x < cellSize * cellsNumber)
                 {
-                    cellMatrix[column, row] = new Cell(container, x, y, cellSize);
+                    cellMatrix[column, row] = new Cell(container, x, y, cellSize, clrBorders.Color,clrBackground.Color,clrFill.Color);
                     x += cellSize;
                     column++;
                 }
@@ -146,6 +146,22 @@ namespace Game_of_life
                 row++;
                 column = 0;
                 y += cellSize;
+            }
+        }
+
+        private void ReplaceMatrix()
+        {
+            cellsNumber = Convert.ToInt16(txtSize.Text);
+
+            for (int i = 0; i < cellsNumber; i++)
+            {
+                for (int j = 0; j < cellsNumber; j++)
+                {
+                    cellMatrix[j, i].BorderColor = clrBorders.Color;
+                    cellMatrix[j, i].BackColor = cellMatrix[j, i].isAlive ? clrFill.Color : clrBackground.Color;
+                    cellMatrix[j, i].backgroundColor = clrBackground.Color;
+                    cellMatrix[j, i].fillColor = clrFill.Color;
+                }
             }
         }
 
@@ -162,6 +178,24 @@ namespace Game_of_life
                 }
             }
             return true;
+        }
+
+        private void BtnBorderColor_Click(object sender, EventArgs e)
+        {
+            clrBorders.ShowDialog();
+            ReplaceMatrix();
+        }
+
+        private void Btn_BackgroundColor_Click(object sender, EventArgs e)
+        {
+            clrBackground.ShowDialog();
+            ReplaceMatrix();
+        }
+
+        private void Btn_FillColor_Click(object sender, EventArgs e)
+        {
+            clrFill.ShowDialog();
+            ReplaceMatrix();
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.PowerPacks;
+using Game_of_life;
 
 namespace Game_of_life
 {
@@ -10,17 +11,21 @@ namespace Game_of_life
 
         int aliveNeighbours;
         bool cursorLeft;
+        public Color backgroundColor;
+        public Color fillColor;
         public bool isAlive;
 
-        public Cell(ShapeContainer container, int x, int y, int size)
+        public Cell(ShapeContainer container, int x, int y, int size, Color borderColor, Color backgroundColor, Color fillColor)
         {
             Parent = container;
             BackStyle = BackStyle.Opaque;
             SelectionColor = Color.Transparent;
             Location = new Point(x, y);
             Size = new Size(size, size);
-            BackColor = Color.White;
-            BorderColor = Color.LightGray;
+            this.fillColor = fillColor;
+            this.backgroundColor = backgroundColor;
+            BackColor = backgroundColor;
+            BorderColor = borderColor;
             MouseDown += new MouseEventHandler(Cell_MouseDown);
             MouseMove += new MouseEventHandler(Cell_MouseMove);
             MouseLeave += new EventHandler(Cell_MouseLeave);
@@ -34,19 +39,22 @@ namespace Game_of_life
                 Cell cell = (Cell)sender;
 
                 cell.isAlive = !cell.isAlive;
-                cell.BackColor = cell.isAlive ? Color.Black : Color.White;
+                cell.BackColor = cell.isAlive ? fillColor : backgroundColor;
                 cursorLeft = false;
             }
         }
 
         private void Cell_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left && cursorLeft)
-            {
-                Cell cell = (Cell)sender;
+            Cell cell = (Cell)sender;
 
-                cell.isAlive = !cell.isAlive;
-                cell.BackColor = cell.isAlive ? Color.Black : Color.White;
+            if (!cell.isAlive
+                && e.Button == MouseButtons.Left 
+                && cursorLeft)
+            {
+
+                cell.isAlive = true;
+                cell.BackColor = fillColor;
                 cursorLeft = false;
             }
         }
@@ -102,7 +110,7 @@ namespace Game_of_life
                 for (int j = 0; j < cellsNumber; j++)
                 {
                     ApplyRules(ref cellMatrix[j, i]);
-                    cellMatrix[j, i].BackColor = cellMatrix[j, i].isAlive ? Color.Black : Color.White;
+                    cellMatrix[j, i].BackColor = cellMatrix[j, i].isAlive ? cellMatrix[j, i].fillColor : cellMatrix[j, i].backgroundColor;
                 }
             }
         }

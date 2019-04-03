@@ -40,6 +40,12 @@
             this.lblInstructions = new System.Windows.Forms.Label();
             this.txtSize = new System.Windows.Forms.TextBox();
             this.btnGenerate = new System.Windows.Forms.Button();
+            this.clrBorders = new System.Windows.Forms.ColorDialog();
+            this.btn_BorderColor = new System.Windows.Forms.Button();
+            this.btn_FillColor = new System.Windows.Forms.Button();
+            this.btn_BackgroundColor = new System.Windows.Forms.Button();
+            this.clrBackground = new System.Windows.Forms.ColorDialog();
+            this.clrFill = new System.Windows.Forms.ColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.frame)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barSpeed)).BeginInit();
             this.SuspendLayout();
@@ -137,11 +143,53 @@
             this.btnGenerate.UseVisualStyleBackColor = true;
             this.btnGenerate.Click += new System.EventHandler(this.BtnGenerate_Click);
             // 
+            // clrBorders
+            // 
+            this.clrBorders.AnyColor = true;
+            this.clrBorders.Color = System.Drawing.Color.LightGray;
+            // 
+            // btn_BorderColor
+            // 
+            this.btn_BorderColor.Location = new System.Drawing.Point(12, 308);
+            this.btn_BorderColor.Name = "btn_BorderColor";
+            this.btn_BorderColor.Size = new System.Drawing.Size(89, 23);
+            this.btn_BorderColor.TabIndex = 9;
+            this.btn_BorderColor.Text = "Color de bordes";
+            this.btn_BorderColor.UseVisualStyleBackColor = true;
+            this.btn_BorderColor.Click += new System.EventHandler(this.BtnBorderColor_Click);
+            // 
+            // btn_FillColor
+            // 
+            this.btn_FillColor.Location = new System.Drawing.Point(12, 366);
+            this.btn_FillColor.Name = "btn_FillColor";
+            this.btn_FillColor.Size = new System.Drawing.Size(89, 23);
+            this.btn_FillColor.TabIndex = 10;
+            this.btn_FillColor.Text = "Color de activo";
+            this.btn_FillColor.UseVisualStyleBackColor = true;
+            this.btn_FillColor.Click += new System.EventHandler(this.Btn_FillColor_Click);
+            // 
+            // btn_BackgroundColor
+            // 
+            this.btn_BackgroundColor.Location = new System.Drawing.Point(12, 337);
+            this.btn_BackgroundColor.Name = "btn_BackgroundColor";
+            this.btn_BackgroundColor.Size = new System.Drawing.Size(89, 23);
+            this.btn_BackgroundColor.TabIndex = 11;
+            this.btn_BackgroundColor.Text = "Color de fondo";
+            this.btn_BackgroundColor.UseVisualStyleBackColor = true;
+            this.btn_BackgroundColor.Click += new System.EventHandler(this.Btn_BackgroundColor_Click);
+            // 
+            // clrBackground
+            // 
+            this.clrBackground.Color = System.Drawing.Color.White;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(612, 499);
+            this.Controls.Add(this.btn_BackgroundColor);
+            this.Controls.Add(this.btn_FillColor);
+            this.Controls.Add(this.btn_BorderColor);
             this.Controls.Add(this.btnGenerate);
             this.Controls.Add(this.txtSize);
             this.Controls.Add(this.lblInstructions);
@@ -175,6 +223,12 @@
         private System.Windows.Forms.Label lblInstructions;
         private System.Windows.Forms.TextBox txtSize;
         private System.Windows.Forms.Button btnGenerate;
+        private System.Windows.Forms.ColorDialog clrBorders;
+        private System.Windows.Forms.Button btn_BorderColor;
+        private System.Windows.Forms.Button btn_FillColor;
+        private System.Windows.Forms.Button btn_BackgroundColor;
+        private System.Windows.Forms.ColorDialog clrBackground;
+        private System.Windows.Forms.ColorDialog clrFill;
     }
 }
 
